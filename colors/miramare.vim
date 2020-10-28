@@ -40,8 +40,8 @@ let s:palette = {
       \ 'red':        ['#e68183',   '167',  'Red'],
       \ 'orange':     ['#e39b7b',   '208',  'Red'],
       \ 'yellow':     ['#d9bb80',   '214',  'Yellow'],
-      \ 'green':      ['#a7c080',   '142',  'Green'],
-      \ 'cyan':       ['#87c095',   '108',   'Cyan'],
+      \ 'green':      ['#87af87',   '108',  'Green'],
+      \ 'cyan':       ['#87c095',   '108',  'Cyan'],
       \ 'blue':       ['#89beba',   '109',  'Blue'],
       \ 'purple':     ['#d3a0bc',   '175',  'Magenta'],
       \ 'grey':       ['#444444',   '245',  'LightGrey'],
@@ -173,8 +173,8 @@ call s:HL('WarningMsg', s:palette.yellow, s:palette.none, 'bold')
 call s:HL('ModeMsg', s:palette.fg, s:palette.none, 'bold')
 call s:HL('MoreMsg', s:palette.blue, s:palette.none, 'bold')
 call s:HL('IncSearch', s:palette.none, s:palette.none, 'reverse')
-call s:HL('Search', s:palette.none, s:palette.bg3)
-call s:HL('MatchParen', s:palette.none, s:palette.bg4)
+call s:HL('Search', s:palette.orange, s:palette.none, 'underline')
+call s:HL('MatchParen', s:palette.blue, s:palette.bg4, 'bold,underline')
 call s:HL('NonText', s:palette.grey, s:palette.none)
 call s:HL('Pmenu', s:palette.fg, s:palette.bg2)
 call s:HL('PmenuSbar', s:palette.none, s:palette.bg2)
@@ -262,6 +262,7 @@ call s:HL('Underlined', s:palette.none, s:palette.none, 'underline')
 " Predefined Highlight Groups: {{{
 call s:HL('Fg', s:palette.fg, s:palette.none)
 call s:HL('Grey', s:palette.grey, s:palette.none)
+call s:HL('LightGrey', s:palette.light_grey, s:palette.none)
 call s:HL('Yellow', s:palette.yellow, s:palette.none)
 call s:HL('Blue', s:palette.blue, s:palette.none)
 if s:configuration.enable_italic
@@ -514,7 +515,7 @@ highlight! link jsSpreadExpression Purple
 highlight! link jsSpreadOperator Green
 highlight! link jsModuleKeyword Yellow
 highlight! link jsObjectValue Blue
-highlight! link jsTemplateExpression LightGray
+highlight! link jsTemplateExpression LightGrey
 highlight! link jsTemplateBraces Yellow
 highlight! link jsClassMethodType Orange
 " }}}
@@ -916,7 +917,7 @@ highlight! link pythonConditional RedItalic
 highlight! link pythonRepeat RedItalic
 highlight! link pythonException RedItalic
 highlight! link pythonNone Cyan
-highlight! link pythonDot Grey
+highlight! link pythonDot LightGrey
 " }}}
 " }}}
 " Lua: {{{
@@ -1673,7 +1674,7 @@ highlight! link StartifySlash Green
 highlight! link StartifySection Blue
 highlight! link StartifyHeader Orange
 highlight! link StartifySpecial Grey
-highlight! link StartifyFooter Grey
+highlight! link StartifyFooter LightGrey
 " }}}
 " ap/vim-buftabline{{{
 highlight! link BufTabLineCurrent TabLineSel
@@ -1715,6 +1716,19 @@ call s:HL('QuickScopeSecondary', s:palette.blue, s:palette.none, 'underline')
 " APZelos/blamer.nvim {{{
 highlight! link Blamer Grey
 " }}}
+" lervag/wiki.vim {{{
+highlight! link wikiHeader1 markdownH1
+highlight! link wikiHeader2 markdownH2
+highlight! link wikiHeader3 markdownH3
+highlight! link wikiHeader4 markdownH4
+highlight! link wikiHeader5 markdownH5
+highlight! link wikiHeader6 markdownH6
+highlight! link wikiQuote LightGrey
+call s:HL('wikiLinkWiki', s:palette.none, s:palette.none, 'underline,bold')
+" }}}
+" voldikss/vim-floaterm {{{
+call s:HL('Floaterm', s:palette.none, s:palette.bg4)
+" }}}
 " }}}
 " Terminal: {{{
 if (has('termguicolors') && &termguicolors) || has('gui_running')
@@ -1727,12 +1741,12 @@ if (has('termguicolors') && &termguicolors) || has('gui_running')
         \ 'cyan':     s:palette.cyan,
         \ 'blue':     s:palette.blue,
         \ 'purple':   s:palette.purple,
-        \ 'white':    s:palette.grey
+        \ 'white':    s:palette.light_grey
         \ }
   " Implementation: {{{
   if !has('nvim')
     let g:terminal_ansi_colors = [s:terminal.black[0], s:terminal.red[0], s:terminal.green[0], s:terminal.yellow[0],
-          \ s:terminal.blue[0], s:terminal.purple[0], s:terminal.cyan[0], s:terminal.white[0], s:terminal.black[0], s:terminal.red[0],
+          \ s:terminal.blue[0], s:terminal.purple[0], s:terminal.cyan[0], s:terminal.white[0], s:terminal.white[0], s:terminal.red[0],
           \ s:terminal.green[0], s:terminal.yellow[0], s:terminal.blue[0], s:terminal.purple[0], s:terminal.cyan[0], s:terminal.white[0]]
   else
     let g:terminal_color_0 = s:terminal.black[0]
@@ -1743,7 +1757,7 @@ if (has('termguicolors') && &termguicolors) || has('gui_running')
     let g:terminal_color_5 = s:terminal.purple[0]
     let g:terminal_color_6 = s:terminal.cyan[0]
     let g:terminal_color_7 = s:terminal.white[0]
-    let g:terminal_color_8 = s:terminal.black[0]
+    let g:terminal_color_8 = s:terminal.white[0]
     let g:terminal_color_9 = s:terminal.red[0]
     let g:terminal_color_10 = s:terminal.green[0]
     let g:terminal_color_11 = s:terminal.yellow[0]
